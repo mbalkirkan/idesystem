@@ -52,7 +52,7 @@
             <div class="col-12 col-md-4 align-self-center">
                 <div class="float-sm-left float-none mb-4 mb-sm-0">
                     <ol class="breadcrumb mb-0 bg-transparent redial-light">
-                        <li class="breadcrumb-item"><a href="#" class="redial-light">@yield('title')</a></li>
+{{--                        <li class="breadcrumb-item"><a href="#" class="redial-light">@yield('title')</a></li>--}}
                     </ol>
                 </div>
             </div>

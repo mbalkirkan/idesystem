@@ -10,103 +10,125 @@
                 <div class="col-12 col-md-12 mb-4">
                     <div class="card redial-border-light redial-shadow">
                         <div class="card-body">
-                            <h6 class="header-title pl-3 redial-relative">Products</h6>
-                            <table class="table table-striped table-hover mb-0">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Status</th>
-                                    <th>Added</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>0001</td>
-                                    <td>Product 1</td>
-                                    <td>Description for Product</td>
-                                    <td>$ 12.20</td>
-                                    <td>233</td>
-                                    <td><span class="badge badge-primary text-white">Stock</span></td>
-                                    <td>04/10/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>0002</td>
-                                    <td>Product 2</td>
-                                    <td>Description for Product</td>
-                                    <td>$ 13.20</td>
-                                    <td>245</td>
-                                    <td><span class="badge badge-primary text-white">Stock</span></td>
-                                    <td>04/10/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>0003</td>
-                                    <td>Product 3</td>
-                                    <td>Description for Product</td>
-                                    <td>$ 14.20</td>
-                                    <td>210</td>
-                                    <td><span class="badge badge-danger text-white">Removed</span></td>
-                                    <td>04/10/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>0004</td>
-                                    <td>Product 4</td>
-                                    <td>Description for Product</td>
-                                    <td>$ 17.20</td>
-                                    <td>310</td>
-                                    <td><span class="badge badge-warning text-white">Out of Stock</span></td>
-                                    <td>04/10/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>0005</td>
-                                    <td>Product 5</td>
-                                    <td>Description for Product</td>
-                                    <td>$ 11.20</td>
-                                    <td>110</td>
-                                    <td><span class="badge badge-danger text-white">Removed</span></td>
-                                    <td>04/10/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>0006</td>
-                                    <td>Product 6</td>
-                                    <td>Description for Product</td>
-                                    <td>$ 14.80</td>
-                                    <td>220</td>
-                                    <td><span class="badge badge-primary text-white">Stock</span></td>
-                                    <td>04/10/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>0007</td>
-                                    <td>Product 7</td>
-                                    <td>Description for Product</td>
-                                    <td>$ 17.50</td>
-                                    <td>200</td>
-                                    <td><span class="badge badge-danger text-white">Removed</span></td>
-                                    <td>04/10/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>0008</td>
-                                    <td>Product 8</td>
-                                    <td>Description for Product</td>
-                                    <td>$ 14.50</td>
-                                    <td>109</td>
-                                    <td><span class="badge badge-warning text-white">Out of Stock</span></td>
-                                    <td>04/10/2017</td>
-                                </tr>
-                                <tr>
-                                    <td>0009</td>
-                                    <td>Product 9</td>
-                                    <td>Description for Product</td>
-                                    <td>$ 16.50</td>
-                                    <td>185</td>
-                                    <td><span class="badge badge-danger text-white">Removed</span></td>
-                                    <td>04/10/2017</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <h6 class="header-title pl-3 redial-relative">Ürünler</h6>
+                            <div class="col-12 col-sm-12">
+                                <div class="row mb-4">
+                                    <div class="col-12 col-xl-6 mb-4">
+                                        <div class="card redial-border-light redial-shadow">
+                                            <div class="card-body">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left">
+                                                    <a href="#"><img src="dist/images/profile4.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
+                                                    <div class="media-body">
+                                                        <a href="#"><h4>Jonathan</h4></a>
+                                                        <ul class="list-unstyled redial-font-weight-600">
+                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
+                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
+                                                        </ul>
+                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
+                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
+                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-xl-6 mb-4">
+                                        <div class="card redial-border-light redial-shadow">
+                                            <div class="card-body">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left">
+                                                    <a href="#"><img src="dist/images/profile5.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
+                                                    <div class="media-body">
+                                                        <a href="#"><h4>kelvin</h4></a>
+                                                        <ul class="list-unstyled redial-font-weight-600">
+                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
+                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
+                                                        </ul>
+                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
+                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
+                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-xl-6 mb-4">
+                                        <div class="card redial-border-light redial-shadow">
+                                            <div class="card-body">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left">
+                                                    <a href="#"><img src="dist/images/profile6.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
+                                                    <div class="media-body">
+                                                        <a href="#"><h4>Peter</h4></a>
+                                                        <ul class="list-unstyled redial-font-weight-600">
+                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
+                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
+                                                        </ul>
+                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
+                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
+                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-xl-6 mb-4">
+                                        <div class="card redial-border-light redial-shadow">
+                                            <div class="card-body">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left">
+                                                    <a href="#"><img src="dist/images/profile7.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
+                                                    <div class="media-body">
+                                                        <a href="#"><h4>Ray Sin</h4></a>
+                                                        <ul class="list-unstyled redial-font-weight-600">
+                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
+                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
+                                                        </ul>
+                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
+                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
+                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-xl-6 mb-4 mb-xl-0">
+                                        <div class="card redial-border-light redial-shadow">
+                                            <div class="card-body">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left">
+                                                    <a href="#"><img src="dist/images/profile.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
+                                                    <div class="media-body">
+                                                        <a href="#"><h4>Clark</h4></a>
+                                                        <ul class="list-unstyled redial-font-weight-600">
+                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
+                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
+                                                        </ul>
+                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
+                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
+                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-xl-6">
+                                        <div class="card redial-border-light redial-shadow">
+                                            <div class="card-body">
+                                                <div class="media d-block d-sm-flex text-center text-sm-left">
+                                                    <a href="#"><img src="dist/images/profile8.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
+                                                    <div class="media-body">
+                                                        <a href="#"><h4>Abexon Dixon</h4></a>
+                                                        <ul class="list-unstyled redial-font-weight-600">
+                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
+                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
+                                                        </ul>
+                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
+                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
+                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
