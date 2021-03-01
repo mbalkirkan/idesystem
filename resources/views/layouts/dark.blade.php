@@ -84,6 +84,9 @@
                     </div>
                 </div>
 
+                <li><a href="{{route('auth.index')}}"><span class="lnr lnr-home pr-2"></span> Anasayfa</a></li>
+                <li><a href="{{route('auth.logout')}}"><i class="fa fa-sign-out pr-2"></i> Çıkış Yap</a></li>
+
 
 {{--                <li><a href="{{route('scan.index')}}"><i class="fa fa-dashboard pr-1"></i> Tarama</a></li>--}}
 {{--                <li><a href="{{route('scan.stocks.get')}}"><i class="fa fa-dashboard pr-1"></i> Hisse Senetleri</a></li>--}}

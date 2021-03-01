@@ -1,27 +1,37 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 
+Route::group(['middleware' => ['IsUnLoggedIn']], function () {
 
+    Route::get('/login', 'App\Http\Controllers\LoginController@login')->name('login.index');
+    Route::post('/login', 'App\Http\Controllers\LoginController@_login')->name('login.login');
 
-Route::get('/login', 'App\Http\Controllers\LoginController@login')->name('login.index');
-Route::post('/login', 'App\Http\Controllers\LoginController@_login')->name('login.login');
+    Route::get('/register', 'App\Http\Controllers\LoginController@register')->name('register.index');
+    Route::post('/register', 'App\Http\Controllers\LoginController@_register')->name('register.register');
 
-Route::get('/register', 'App\Http\Controllers\LoginController@register')->name('register.index');
-Route::post('/register', 'App\Http\Controllers\LoginController@_register')->name('register.register');
+});
+
 
 
 Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['IsAdmin']], function () {
-
+        Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
     });
 
     Route::group(['middleware' => ['IsSupervisor']], function () {
-
+        Route::get('/supervisor', 'App\Http\Controllers\SupervisorController@index')->name('supervisor.index');
     });
 
 
-    Route::get('/user', 'App\Http\Controllers\UserController@index')->name('user.index');
+    Route::group(['middleware' => ['IsUser']], function () {
+        Route::get('/user', 'App\Http\Controllers\UserController@index')->name('user.index');
+    });
+
+
+    Route::get('/main', 'App\Http\Controllers\AuthController@main')->name('auth.index');
+    Route::get('/logout', 'App\Http\Controllers\AuthController@logout')->name('auth.logout');
 });

@@ -31,7 +31,7 @@ class LoginController extends Controller
         }
         elseif( Auth::attempt(['username' =>$request->username,'password'=>$request->password,'type'=>1],isset($request->remember) ? true : false))
         {
-            return  redirect()->route('user.index');
+            return  redirect()->route('admin.index');
         }
         else{
             return redirect()->route('login.index')->with('error', 'Bilgileri kontrol ediniz !');
@@ -53,14 +53,12 @@ class LoginController extends Controller
             'password' => 'required|confirmed',
             'password_confirmation' => 'required'
         ]);
-
        $user= User::create([
             'name'=>$request->name,
             'username'=>$request->username,
            'password'=>bcrypt($request->password),
            'email'=>$request->email
         ]);
-
 
        return redirect()->route('login.index')->with('message', 'Başarıyla Kayıt Oldunuz !');
     }
