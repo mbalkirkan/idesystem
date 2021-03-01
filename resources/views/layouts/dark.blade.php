@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>İdeSystem - @yield('title')</title>
-    <link rel="icon" href="{{asset('dist/images/favicon.ico')}}" />
+    <link rel="icon" href="{{asset('dist/images/favicon.ico')}}"/>
 
     <!--Plugin CSS-->
     <link href="{{asset('dist/css/plugins.min.css')}}" rel="stylesheet">
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-12 col-lg-3 col-xl-2 align-self-center">
                 <div class="site-logo">
-                    <a href="#"><img src="{{asset('dist/images/logo-v1.png')}}" alt="" class="img-fluid" /></a>
+                    <a href="#"><img src="{{asset('dist/images/logo-v1.png')}}" alt="" class="img-fluid"/></a>
                 </div>
                 <div class="navbar-header">
                     <button type="button" id="sidebarCollapse" class="navbar-btn bg-transparent float-right">
@@ -52,7 +52,7 @@
             <div class="col-12 col-md-4 align-self-center">
                 <div class="float-sm-left float-none mb-4 mb-sm-0">
                     <ol class="breadcrumb mb-0 bg-transparent redial-light">
-{{--                        <li class="breadcrumb-item"><a href="#" class="redial-light">@yield('title')</a></li>--}}
+                        {{--                        <li class="breadcrumb-item"><a href="#" class="redial-light">@yield('title')</a></li>--}}
                     </ol>
                 </div>
             </div>
@@ -73,31 +73,27 @@
             <ul class="metismenu list-unstyled mb-0" id="menu">
                 <div class="media py-3 redial-divider-dashed">
                     <a href="#" class="redial-light redial-relative">
-                        <img src="dist/images/lockscreen.jpg" alt="" class="img-fluid rounded-circle d-flex mr-3">
+                        <img src="{{asset('dist/images/lockscreen.jpg')}}" alt="" class="img-fluid rounded-circle d-flex mr-3">
 
                     </a>
                     <div class="media-body align-self-center redial-line-height-1_5">
                         <a href="#" class="redial-light">
-                            <small class="d-block redial-font-weight-800 redial-dark">{{\Illuminate\Support\Facades\Auth::user()->name}}</small>
+                            <small
+                                class="d-block redial-font-weight-800 redial-dark">{{\Illuminate\Support\Facades\Auth::user()->name}}</small>
                             <small>{{\App\Models\UserType::find(\Illuminate\Support\Facades\Auth::user()->type)->role}}</small>
                         </a>
                     </div>
                 </div>
 
                 <li><a href="{{route('auth.index')}}"><span class="lnr lnr-home pr-2"></span> Anasayfa</a></li>
+                @if(\Illuminate\Support\Facades\Auth::user()->type==1)
+                    <li><a href="{{route('admin.product.index')}}"><i class="fa fa-th-list pr-2"></i> Ürünler</a></li>
+                    <li><a href="{{route('admin.user.index')}}"><i class="fa fa-th-list pr-2"></i> Kullanıcılar</a></li>
+                @endif
                 <li><a href="{{route('auth.logout')}}"><i class="fa fa-sign-out pr-2"></i> Çıkış Yap</a></li>
 
 
-{{--                <li><a href="{{route('scan.index')}}"><i class="fa fa-dashboard pr-1"></i> Tarama</a></li>--}}
-{{--                <li><a href="{{route('scan.stocks.get')}}"><i class="fa fa-dashboard pr-1"></i> Hisse Senetleri</a></li>--}}
-{{--                <li><a href="{{route('scan.results')}}"><i class="fa fa-dashboard pr-1"></i> Tarama Sonuçları</a></li>--}}
-{{--                <li><a href="{{route('scan.results.nrefresh')}}"><i class="fa fa-dashboard pr-1"></i> Tarama Sonuçları (N.R.)</a></li>--}}
-{{--                <li><a href="{{route('operation.purchased')}}"><i class="fa fa-dashboard pr-1"></i> Pozisyonda Olan Hisseler</a></li>--}}
-{{--                <li><a href="{{route('operation.profit_taken')}}"><i class="fa fa-dashboard pr-1"></i> Kar Alınanlar</a></li>--}}
-{{--                <li><a href="{{route('operation.stopped')}}"><i class="fa fa-dashboard pr-1"></i> Stoplananlar</a></li>--}}
-{{--                <li><a href="{{route('optimization.index')}}"><i class="fa fa-dashboard pr-1"></i> Optimizasyon</a></li>--}}
-{{--                <li><a href="{{route('optimization.stock')}}"><i class="fa fa-dashboard pr-1"></i> Hisse Optimizasyon</a></li>--}}
-            </ul>
+                  </ul>
         </div>
     </nav>
     <div id="content">
@@ -110,9 +106,6 @@
     <h4 class="text-white mb-0"><i class="icofont icofont-long-arrow-up"></i></h4>
 </a>
 <!-- End Top To Bottom-->
-
-
-
 
 
 <!-- jQuery -->

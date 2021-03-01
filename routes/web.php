@@ -20,6 +20,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['IsAdmin']], function () {
         Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
+
+
+        Route::get('/admin/product', 'App\Http\Controllers\ProductController@index')->name('admin.product.index');
+        Route::get('/admin/user', 'App\Http\Controllers\AdminUserController@index')->name('admin.user.index');
+
     });
 
     Route::group(['middleware' => ['IsSupervisor']], function () {

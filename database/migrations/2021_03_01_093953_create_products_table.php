@@ -14,7 +14,12 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
+            $table->primary('id');
+            $table->string('name');
+            $table->text('description');
+            $table->float('price', 5, 2);
+            $table->text('image')->default('image/product/default.jpg');
             $table->timestamps();
         });
     }
