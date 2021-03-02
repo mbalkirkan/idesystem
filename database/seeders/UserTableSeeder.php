@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
              'name'=>'Muhammet BALKIRKAN',
              'type'=>1,
              'password'=>bcrypt('03mematiM()'),
+             'ideal_username'=>'mbalkirkan'
          ]
        ];
         foreach ($users as $user) {
@@ -30,6 +31,7 @@ class UserTableSeeder extends Seeder
                 'name'=>$user['name'],
                 'type'=>$user['type'],
                 'password'=>$user['password'],
+                'ideal_username'=>$user['ideal_username']
             ]);
        }
 

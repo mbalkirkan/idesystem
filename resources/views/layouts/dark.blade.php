@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>İdeSystem - @yield('title')</title>
     <link rel="icon" href="{{asset('dist/images/favicon.ico')}}"/>
-
+    <meta lang="tr">
     <!--Plugin CSS-->
     <link href="{{asset('dist/css/plugins.min.css')}}" rel="stylesheet">
     <!--main Css-->
@@ -73,15 +73,14 @@
             <ul class="metismenu list-unstyled mb-0" id="menu">
                 <div class="media py-3 redial-divider-dashed">
                     <a href="#" class="redial-light redial-relative">
-                        <img src="{{asset('dist/images/lockscreen.jpg')}}" alt="" class="img-fluid rounded-circle d-flex mr-3">
+                        <img src="{{asset('dist/images/lockscreen.jpg')}}" alt="{{\Illuminate\Support\Facades\Auth::user()->name}}" class="img-fluid rounded-circle d-flex mr-3">
 
                     </a>
                     <div class="media-body align-self-center redial-line-height-1_5">
                         <a href="#" class="redial-light">
-                            <small
-                                class="d-block redial-font-weight-800 redial-dark">{{\Illuminate\Support\Facades\Auth::user()->name}}</small>
+                            <small class="d-block redial-font-weight-800 redial-dark">{{\Illuminate\Support\Facades\Auth::user()->name}}</small> </a>
                             <small>{{\App\Models\UserType::find(\Illuminate\Support\Facades\Auth::user()->type)->role}}</small>
-                        </a>
+
                     </div>
                 </div>
 

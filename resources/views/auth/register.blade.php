@@ -30,31 +30,49 @@
                         <form method="POST" action="{{route('register.register')}}">
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control" name="username" placeholder="Kullanıcı adı" />
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" name="username" class="form-control" placeholder="Kullanıcı Adı" >
+                                </div>
                                 @error('username')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="email" placeholder="E-mail" />
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                    <input type="text" class="form-control" name="email" placeholder="E-posta" >
+                                </div>
                                 @error('email')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="name" placeholder="Adınız" />
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
+                                    <input type="text" class="form-control" name="name" placeholder="Adınız" />
+                                </div>
                                 @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" name="password" placeholder="Şifre" />
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                    <input type="password" class="form-control" name="password" placeholder="Şifre" />
+                                </div>
+
                                 @error('password')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" name="password_confirmation" placeholder="Şifre onay" />
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                    <input type="password" class="form-control" name="password_confirmation" placeholder="Şifre onay" />
+                                </div>
+
+
                                 @error('password_confirmation')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

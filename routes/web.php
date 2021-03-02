@@ -24,7 +24,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/admin/product', 'App\Http\Controllers\ProductController@index')->name('admin.product.index');
         Route::get('/admin/user', 'App\Http\Controllers\AdminUserController@index')->name('admin.user.index');
-
+        Route::post('/admin/user/update', 'App\Http\Controllers\AdminUserController@update')->name('admin.user.update');
+        Route::get('/admin/user/delete', 'App\Http\Controllers\AdminUserController@delete')->name('admin.user.delete');
     });
 
     Route::group(['middleware' => ['IsSupervisor']], function () {

@@ -40,13 +40,20 @@
                         <form method="POST" action="{{route('login.login')}}">
                             @csrf
                             <div class="form-group">
-                                <input type="text" name="username" class="form-control" placeholder="Kullanıcı Adı" />
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" name="username" class="form-control" placeholder="Kullanıcı Adı" >
+                                </div>
+
                                 @error('username')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="password" name="password" class="form-control" placeholder="Şifre" />
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                    <input type="password" name="password" class="form-control" placeholder="Şifre" >
+                                </div>
                                 @error('password')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

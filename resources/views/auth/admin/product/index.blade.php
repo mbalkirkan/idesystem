@@ -12,7 +12,7 @@
                         <div class="card-header">
 
                                 <div class="btn-group mb-2">
-                                    <button type="button" tooltip="asfasf" class="btn btn-success"><i class="fa fa-plus-square"></i></button>
+                                    <button type="button"  data-toggle="modal" data-target="#new_product"  class="btn btn-success"><i class="fa fa-plus-square"></i></button>
                                 </div>
 
                         </div>
@@ -147,6 +147,61 @@
         </div>
 
     </div>
+
+
+    <!-- Kullanıcı Düzenleme -->
+    <div class="modal fade" id="new_product" tabindex="-1" role="dialog" aria-labelledby="new_product"
+         aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content redial-border-light">
+                <div class="modal-header redial-border-light">
+                    <h5 class="modal-title pt-2" id="exampleModalLabel">Yeni Ürün Ekle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{route('admin.user.update')}}">
+                        @csrf
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
+                                <input id="" type="text" name="" class="form-control"
+                                       placeholder="Ürün adı">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                <textarea style="height: 80px !important;" class="form-control" placeholder="Ürün açıklaması"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-turkish-lira"></i></span>
+                                <input id="" type="text" class="form-control" name=""
+                                       placeholder="Fiyat"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-file-image-o"></i></span>
+                                <input type="file">
+
+                            </div>
+                        </div>
+                        <button type="submit"
+                                class="btn btn-success btn-md redial-rounded-circle-50 btn-block">Yeni Ürün Ekle
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer redial-border-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Kullanıcı Düzenleme -->
 @endsection
 @section('js')
 
