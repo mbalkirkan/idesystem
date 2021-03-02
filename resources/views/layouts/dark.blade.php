@@ -88,7 +88,7 @@
                 <li><a href="{{route('auth.index')}}"><span class="lnr lnr-home pr-2"></span> Anasayfa</a></li>
                 @if(\Illuminate\Support\Facades\Auth::user()->type==1)
                     <li><a href="{{route('admin.product.index')}}"><i class="fa fa-th-list pr-2"></i> Ürünler</a></li>
-                    <li><a href="{{route('admin.user.index')}}"><i class="fa fa-th-list pr-2"></i> Kullanıcılar</a></li>
+                    <li><a href="{{route('admin.user.index')}}"><i class="fa fa fa-user-circle pr-2"></i> Kullanıcılar</a></li>
                 @endif
                 <li><a href="{{route('auth.logout')}}"><i class="fa fa-sign-out pr-2"></i> Çıkış Yap</a></li>
 
