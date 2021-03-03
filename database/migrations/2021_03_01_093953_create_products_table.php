@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->primary('id');
             $table->string('name');
             $table->text('description');
+            $table->string('summary');
             $table->float('price', 5, 2);
             $table->string('image')->default('image/product/default.jpg');
             $table->timestamps();

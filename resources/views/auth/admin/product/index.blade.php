@@ -161,32 +161,39 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('admin.user.update')}}">
+                    <form method="POST" action="{{route('admin.product.add')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <div class="input-group form-group">
                                 <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
-                                <input id="" type="text" name="" class="form-control"
+                                <input id="add_product_name" type="text" name="add_product_name" class="form-control"
                                        placeholder="Ürün adı">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-indent"></i></span>
+                                <input id="add_product_summary" type="text" class="form-control" name="add_product_summary"
+                                       placeholder="Özet"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group form-group">
                                 <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
-                                <textarea style="height: 80px !important;" class="form-control" placeholder="Ürün açıklaması"></textarea>
+                                <textarea name="add_product_description" style="height: 80px !important;" class="form-control" placeholder="Ürün açıklaması"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group form-group">
                                 <span class="input-group-addon"><i class="fa fa-turkish-lira"></i></span>
-                                <input id="" type="text" class="form-control" name=""
+                                <input id="add_product_price" type="text" class="form-control" name="add_product_price"
                                        placeholder="Fiyat"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group form-group">
                                 <span class="input-group-addon"><i class="fa fa-file-image-o"></i></span>
-                                <input type="file">
+                                <input id="add_product_image" name="add_product_image" type="file">
 
                             </div>
                         </div>
@@ -204,5 +211,16 @@
     <!-- Kullanıcı Düzenleme -->
 @endsection
 @section('js')
-
+    <script>
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        toastr.error('Hata - <br /> {{ $error }}');
+        @endforeach
+        @endif
+    </script>
+    <script>
+        @if(session()->has('message'))
+        toastr.success("Başarılı - <br /> {{ session()->get('message') }}");
+        @endif
+    </script>
 @endsection

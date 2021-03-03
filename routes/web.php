@@ -22,7 +22,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
 
 
-        Route::get('/admin/product', 'App\Http\Controllers\ProductController@index')->name('admin.product.index');
+        Route::get('/admin/product', 'App\Http\Controllers\AdminProductController@index')->name('admin.product.index');
+        Route::post('/admin/product/add', 'App\Http\Controllers\AdminProductController@add')->name('admin.product.add');
+
+
         Route::get('/admin/user', 'App\Http\Controllers\AdminUserController@index')->name('admin.user.index');
         Route::post('/admin/user/update', 'App\Http\Controllers\AdminUserController@update')->name('admin.user.update');
         Route::get('/admin/user/delete', 'App\Http\Controllers\AdminUserController@delete')->name('admin.user.delete');
