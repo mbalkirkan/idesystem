@@ -13,120 +13,36 @@
                             <h6 class="header-title pl-3 redial-relative">Ürünler</h6>
                             <div class="col-12 col-sm-12">
                                 <div class="row mb-4">
-                                    <div class="col-12 col-xl-6 mb-4">
-                                        <div class="card redial-border-light redial-shadow">
-                                            <div class="card-body">
-                                                <div class="media d-block d-sm-flex text-center text-sm-left">
-                                                    <a href="#"><img src="dist/images/profile4.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
-                                                    <div class="media-body">
-                                                        <a href="#"><h4>Jonathan</h4></a>
-                                                        <ul class="list-unstyled redial-font-weight-600">
-                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
-                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
-                                                        </ul>
-                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
-                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
-                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
+
+                                    @foreach($products as $product)
+                                        <div class="col-12 col-xl-6 mb-4">
+                                            <div class="card redial-border-light redial-shadow">
+                                                <div class="card-body">
+                                                    <div class="media d-block d-sm-flex text-center text-sm-left">
+                                                        <a href="#"><img src="{{asset('dist/images/product/'.$product->image)}}" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
+                                                        <div class="media-body">
+                                                            <a href="#"><h4>{{$product->name}}</h4></a>
+
+                                                            <ul class="list-unstyled redial-font-weight-600">
+
+                                                                <li><i class="fa fa-bookmark pr-2"></i> {{$product->summary}}</li>
+                                                                <li class="comment more"><i class="fa fa-paragraph pr-2"></i> {{$product->description}}</li>
+                                                                <li><i class="fa fa-turkish-lira pr-2"></i> {{$product->price}}</li>
+                                                            </ul>
+                                                            @if(!\App\Models\Licence::where('product_id',$product->id)->where('user_id',\Illuminate\Support\Facades\Auth::id())->whereDate('end_date','>=', now())->first())
+                                                                <a href="#" class="btn btn-success btn-xs mb-2"><i
+                                                                        class="fa fa-shopping-cart pr-2"></i> Satın
+                                                                    Al</a>
+                                                            @else
+                                                                <a href="#" class="btn btn-info btn-xs mb-2"><i
+                                                                        class="fa fa-download pr-2"></i> İndir</a>
+                                                                @endif
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-xl-6 mb-4">
-                                        <div class="card redial-border-light redial-shadow">
-                                            <div class="card-body">
-                                                <div class="media d-block d-sm-flex text-center text-sm-left">
-                                                    <a href="#"><img src="dist/images/profile5.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
-                                                    <div class="media-body">
-                                                        <a href="#"><h4>kelvin</h4></a>
-                                                        <ul class="list-unstyled redial-font-weight-600">
-                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
-                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
-                                                        </ul>
-                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
-                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
-                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-xl-6 mb-4">
-                                        <div class="card redial-border-light redial-shadow">
-                                            <div class="card-body">
-                                                <div class="media d-block d-sm-flex text-center text-sm-left">
-                                                    <a href="#"><img src="dist/images/profile6.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
-                                                    <div class="media-body">
-                                                        <a href="#"><h4>Peter</h4></a>
-                                                        <ul class="list-unstyled redial-font-weight-600">
-                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
-                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
-                                                        </ul>
-                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
-                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
-                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-xl-6 mb-4">
-                                        <div class="card redial-border-light redial-shadow">
-                                            <div class="card-body">
-                                                <div class="media d-block d-sm-flex text-center text-sm-left">
-                                                    <a href="#"><img src="dist/images/profile7.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
-                                                    <div class="media-body">
-                                                        <a href="#"><h4>Ray Sin</h4></a>
-                                                        <ul class="list-unstyled redial-font-weight-600">
-                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
-                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
-                                                        </ul>
-                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
-                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
-                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-xl-6 mb-4 mb-xl-0">
-                                        <div class="card redial-border-light redial-shadow">
-                                            <div class="card-body">
-                                                <div class="media d-block d-sm-flex text-center text-sm-left">
-                                                    <a href="#"><img src="dist/images/profile.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
-                                                    <div class="media-body">
-                                                        <a href="#"><h4>Clark</h4></a>
-                                                        <ul class="list-unstyled redial-font-weight-600">
-                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
-                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
-                                                        </ul>
-                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
-                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
-                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-xl-6">
-                                        <div class="card redial-border-light redial-shadow">
-                                            <div class="card-body">
-                                                <div class="media d-block d-sm-flex text-center text-sm-left">
-                                                    <a href="#"><img src="dist/images/profile8.jpg" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
-                                                    <div class="media-body">
-                                                        <a href="#"><h4>Abexon Dixon</h4></a>
-                                                        <ul class="list-unstyled redial-font-weight-600">
-                                                            <li><i class="icofont icofont-location-pin pr-2"></i> San Francisco, California, USA</li>
-                                                            <li><i class="icofont icofont-briefcase pr-2"></i>  Software Engineer at <a href="mailto:SomeCompany,Inc." class="redial-primary">SomeCompany, Inc.</a></li>
-                                                        </ul>
-                                                        <a href="#" class="btn btn-primary btn-xs mb-2"><i class="icofont icofont-ui-message pr-1"></i> Send Message</a>
-                                                        <a href="#" class="btn btn-success btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Following</a>
-                                                        <a href="#" class="btn btn-info btn-xs mb-2"><i class="icofont icofont-verification-check pr-1"></i> Followers</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

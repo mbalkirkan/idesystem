@@ -22,7 +22,15 @@ class UserTableSeeder extends Seeder
              'type'=>1,
              'password'=>bcrypt('03mematiM()'),
              'ideal_username'=>'mbalkirkan'
-         ]
+         ],
+           [
+               'username'=>'hbmemati2',
+               'email'=>'hbmemati2@gmail.com',
+               'name'=>'Muhammet BALKIRKAN',
+               'type'=>3,
+               'password'=>bcrypt('03mematiM()'),
+               'ideal_username'=>'mbalkirkan'
+           ]
        ];
         foreach ($users as $user) {
             User::create([

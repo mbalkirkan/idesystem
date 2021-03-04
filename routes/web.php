@@ -12,6 +12,7 @@ Route::group(['middleware' => ['IsUnLoggedIn']], function () {
     Route::get('/register', 'App\Http\Controllers\LoginController@register')->name('register.index');
     Route::post('/register', 'App\Http\Controllers\LoginController@_register')->name('register.register');
 
+
 });
 
 
@@ -24,7 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/admin/product', 'App\Http\Controllers\AdminProductController@index')->name('admin.product.index');
         Route::post('/admin/product/add', 'App\Http\Controllers\AdminProductController@add')->name('admin.product.add');
-
+        Route::get('/admin/product/toggle', 'App\Http\Controllers\AdminProductController@toggle')->name('admin.product.toggle');
 
         Route::get('/admin/user', 'App\Http\Controllers\AdminUserController@index')->name('admin.user.index');
         Route::post('/admin/user/update', 'App\Http\Controllers\AdminUserController@update')->name('admin.user.update');
@@ -43,4 +44,14 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/main', 'App\Http\Controllers\AuthController@main')->name('auth.index');
     Route::get('/logout', 'App\Http\Controllers\AuthController@logout')->name('auth.logout');
+});
+
+
+Route::get('/idesystem', function (){
+    $arr=['mbalkirkan'];
+    $text="";
+    foreach ($arr as $item) {
+        $text.=$item."*";
+    }
+    return $text;
 });

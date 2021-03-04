@@ -46,4 +46,24 @@ class AdminProductController extends Controller
 
         return redirect()->route('admin.product.index')->with('message', 'Yeni Ürün Eklendi !');
     }
+    public function toggle(Request $request)
+    {
+        $product=Product::find($request->id);
+        $message="";
+        $publish=$product->publish;
+        if($publish)
+        {
+            $product->publish=false;
+            $message=$product->name.' adlı ürün yayından kaldırıldı.';
+        }
+
+        else
+        {
+            $product->publish=true;
+            $message=$product->name.' adlı ürün yayınlandı.';
+        }
+
+        $product->save();
+        return redirect()->route('admin.product.index')->with('message', $message);
+    }
 }
