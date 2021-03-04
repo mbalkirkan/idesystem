@@ -10,15 +10,12 @@
                 <div class="col-12 col-md-12 mb-4">
                     <div class="card redial-border-light redial-shadow">
                         <div class="card-header">
-
                                 <div class="btn-group mb-2">
                                     <button type="button"  data-toggle="modal" data-target="#new_product"  class="btn btn-success"><i class="fa fa-plus-square"></i></button>
                                 </div>
-
                         </div>
                         <div class="card-body">
                             <h6 class="header-title pl-3 redial-relative">Ürünler</h6>
-
                             <div class="col-12 col-sm-12">
                                 <div class="row mb-4">
                                     @foreach($products as $product)
