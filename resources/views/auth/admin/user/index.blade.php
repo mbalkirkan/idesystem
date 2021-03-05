@@ -149,7 +149,7 @@
             $('#edit_username').val(username);
             $('#edit_email').val(email);
             $('#edit_ideal_username').val(ideal_username);
-            $('#edit_type').val(type);
+            $('#edit_type').val(type).change();
         }
     </script>
     <script>
