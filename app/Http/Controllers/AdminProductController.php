@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Licence;
+use App\Models\Log;
 use App\Models\Product;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class AdminProductController extends Controller
@@ -65,5 +70,48 @@ class AdminProductController extends Controller
 
         $product->save();
         return redirect()->route('admin.product.index')->with('message', $message);
+    }
+    public function define(Request $request)
+    {
+        $validated = $request->validate([
+            'define_user' => 'required',
+            'define_product' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+
+
+        $start_date= Carbon::parse($request->start_date)->format('Y-d-m H:i:s');
+        $end_date= Carbon::parse($request->end_date)->format('Y-d-m H:i:s');
+        $user_id=$request->define_user;
+        $product_id=$request->define_product;
+
+        $old_licence=Licence::where('product_id',$product_id)->where('user_id',$user_id)->whereDate('end_date','>=', $end_date)->whereDate('start_date','<=', $start_date)->first();
+        if(!$old_licence)
+        {
+            Licence::create([
+                'user_id'=>$user_id,
+                'product_id'=>$product_id,
+                'start_date'=>$start_date,
+                'end_date'=>$end_date,
+            ]);
+            $product=Product::find($product_id);
+            Log::create([
+                'type'=>2,
+                'user_id'=>$user_id,
+                'message'=>Auth::user()->name."' Tarafından ".$product->name." lisansı tanımlandı. (".$request->start_date."-".$request->end_date.")",
+            ]);
+
+            Log::create([
+                'type'=>2,
+                'user_id'=>Auth::id(),
+                'message'=>User::find($user_id)->name."Kullanıcısına ".$product->name." lisansı tanımlandı. (".$request->start_date."-".$request->end_date.")",
+            ]);
+
+            return redirect()->route('admin.product.index')->with('message', 'Kullanıcıya lisans tanımlandı!');
+        }
+        else
+            return redirect()->route('admin.product.index')->with('error', 'Kullanıcının zaten aktif lisansı mevcut !');
+
     }
 }

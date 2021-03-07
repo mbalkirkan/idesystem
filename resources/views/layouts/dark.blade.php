@@ -77,13 +77,12 @@
 
                     </a>
                     <div class="media-body align-self-center redial-line-height-1_5">
-                        <a href="#" class="redial-light">
-                            <small class="d-block redial-font-weight-800 redial-dark">{{\Illuminate\Support\Facades\Auth::user()->name}}</small> </a>
+                        <a href="{{route('auth.profile.index')}}" class="redial-light">
+                            <small class="d-block redial-font-weight-800 redial-dark"><span class="lnr lnr-user pr-2"></span>{{\Illuminate\Support\Facades\Auth::user()->name}}</small> </a>
                             <small>{{\App\Models\UserType::find(\Illuminate\Support\Facades\Auth::user()->type)->role}}</small>
 
                     </div>
                 </div>
-
                 <li><a href="{{route('auth.index')}}"><span class="lnr lnr-home pr-2"></span> Anasayfa</a></li>
                 @if(\Illuminate\Support\Facades\Auth::user()->type==1)
                     <li><a href="{{route('admin.product.index')}}"><i class="fa fa-th-list pr-2"></i> Ürünler</a></li>

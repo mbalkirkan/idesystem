@@ -10,9 +10,10 @@
                 <div class="col-12 col-md-12 mb-4">
                     <div class="card redial-border-light redial-shadow">
                         <div class="card-header">
-                                <div class="btn-group mb-2">
-                                    <button type="button"  data-toggle="modal" data-target="#new_product"  class="btn btn-success"><i class="fa fa-plus-square"></i></button>
-                                </div>
+                            <div class="btn-group mb-2">
+                                <button type="button" data-toggle="modal" data-target="#new_product"
+                                        class="btn btn-success"><i class="fa fa-plus-square"></i></button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <h6 class="header-title pl-3 redial-relative">Ürünler</h6>
@@ -23,20 +24,40 @@
                                             <div class="card redial-border-light redial-shadow">
                                                 <div class="card-body">
                                                     <div class="media d-block d-sm-flex text-center text-sm-left">
-                                                        <a href="#"><img src="{{asset('dist/images/product/'.$product->image)}}" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
+                                                        <a href="#"><img
+                                                                src="{{asset('dist/images/product/'.$product->image)}}"
+                                                                alt=""
+                                                                class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle"
+                                                                width="120"/></a>
                                                         <div class="media-body">
                                                             <a href="#"><h4>{{$product->name}}</h4></a>
 
                                                             <ul class="list-unstyled redial-font-weight-600">
-                                                                <li><span><i class="fa fa-rocket pr-2"></i> Satın Alan Sayısı : {{\App\Models\Licence::where('product_id',$product->id)->whereDate('end_date','>=', now())->get()->count()}}</span></li>
-                                                                <li><i class="fa fa-bookmark pr-2"></i> {{$product->summary}}</li>
-                                                                <li class="comment more"><i class="fa fa-paragraph pr-2"></i> {{$product->description}}</li>
-                                                                <li><i class="fa fa-turkish-lira pr-2"></i> {{$product->price}}</li>
+                                                                <li><span><i class="fa fa-rocket pr-2"></i> Satın Alan Sayısı : {{\App\Models\Licence::where('product_id',$product->id)->whereDate('end_date','>=', now())->get()->count()}}</span>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-bookmark pr-2"></i> {{$product->summary}}
+                                                                </li>
+                                                                <li class="comment more"><i
+                                                                        class="fa fa-paragraph pr-2"></i> {{$product->description}}
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-turkish-lira pr-2"></i> {{$product->price}}
+                                                                </li>
                                                             </ul>
-                                                            <a href="{{route('admin.product.toggle',['id'=>$product->id])}}" class="btn @if($product->publish) btn-secondary @else btn-warning @endif btn-xs mb-2"><i class="fa fa-refresh pr-2"></i> @if($product->publish) Yayından Kaldır @else Yayınla @endif</a>
-                                                            <a href="#" class="btn btn-success btn-xs mb-2"><i class="fa fa-shopping-cart pr-2"></i> Satın Al</a>
+                                                            <a href="{{route('admin.product.toggle',['id'=>$product->id])}}"
+                                                               class="btn @if($product->publish) btn-secondary @else btn-warning @endif btn-xs mb-2"><i
+                                                                    class="fa fa-refresh pr-2"></i> @if($product->publish)
+                                                                    Yayından Kaldır @else Yayınla @endif</a>
+                                                            <button      onclick="$('#define_product').val('{{$product->id}}').change();"  type="button" data-toggle="modal"
+                                                                    data-target="#define_product_modal"
+                                                                    class="btn btn-success btn-xs mb-2"><i
+                                                               class="fa fa-shopping-cart pr-2"></i> Tanımla
+                                                            </button>
 
-                                                            <a href="#" class="btn btn-info btn-xs mb-2"><i class="fa fa-download pr-2"></i> İndir</a>
+                                                            <a href="{{asset('dist/systems/product/'.$product->system_file)}}"
+                                                               class="btn btn-info btn-xs mb-2"><i
+                                                                    class="fa fa-download pr-2"></i> İndir</a>
 
                                                         </div>
                                                     </div>
@@ -56,6 +77,76 @@
         </div>
 
     </div>
+
+
+    <!-- Kullanıcıya Sistem Tanımla -->
+    <div class="modal fade" id="define_product_modal" tabindex="-1" role="dialog" aria-labelledby="define_product_modal"
+         aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content redial-border-light">
+                <div class="modal-header redial-border-light">
+                    <h5 class="modal-title pt-2" id="exampleModalLabel">Kullanıcıya Lisans Tanımla</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{route('admin.product.define')}}">
+                        @csrf
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <select name="define_user" id="define_user" class="fancy-select form-control">
+                                    <option selected disabled>Kullanıcı seçiniz</option>
+                                    @foreach(\App\Models\User::all() as $user)
+                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
+                                <select name="define_product" id="define_product" class="fancy-select form-control">
+
+                                    @foreach($products as $product)
+                                        <option value="{{$product->id}}">{{$product->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-12 col-sm-6 pl-0">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-circle-thin"></i></span>
+                                    <input type="text" placeholder="Başlangıç tarihi" class="form-control"
+                                        name="start_date"   id="datetimepicker"/>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 pr-0">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                    <input type="text" placeholder="Bitiş tarihi" class="form-control"
+                                         name="end_date"  id="datetimepicker2"/>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button type="submit"
+                                class="btn btn-success btn-md redial-rounded-circle-50 btn-block">Kullanıcıya Lisans
+                            Tanımla
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer redial-border-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Kullanıcıya Sistem Tanımla -->
+
 
 
     <!-- Kullanıcı Düzenleme -->
@@ -82,14 +173,16 @@
                         <div class="form-group">
                             <div class="input-group form-group">
                                 <span class="input-group-addon"><i class="fa fa-indent"></i></span>
-                                <input id="add_product_summary" type="text" class="form-control" name="add_product_summary"
+                                <input id="add_product_summary" type="text" class="form-control"
+                                       name="add_product_summary"
                                        placeholder="Özet"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group form-group">
                                 <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
-                                <textarea name="add_product_description" style="height: 80px !important;" class="form-control" placeholder="Ürün açıklaması"></textarea>
+                                <textarea name="add_product_description" style="height: 80px !important;"
+                                          class="form-control" placeholder="Ürün açıklaması"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -140,28 +233,28 @@
         @endif
     </script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var showChar = 100;
             var ellipsestext = "...";
             var moretext = "daha fazla";
             var lesstext = "daha az";
-            $('.more').each(function() {
+            $('.more').each(function () {
                 var content = $(this).html();
 
-                if(content.length > showChar) {
+                if (content.length > showChar) {
 
                     var c = content.substr(0, showChar);
-                    var h = content.substr(showChar-1, content.length - showChar);
+                    var h = content.substr(showChar - 1, content.length - showChar);
 
-                    var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+                    var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
 
                     $(this).html(html);
                 }
 
             });
 
-            $(".morelink").click(function(){
-                if($(this).hasClass("less")) {
+            $(".morelink").click(function () {
+                if ($(this).hasClass("less")) {
                     $(this).removeClass("less");
                     $(this).html(moretext);
                 } else {
@@ -174,23 +267,39 @@
             });
         });
     </script>
+    <script src="{{asset('dist/datetimepicker/jquery.datetimepicker.full.js')}}"></script>
+    <script>
+
+
+        $('#datetimepicker').datetimepicker({
+            lang: 'tr',
+            format: 'd/m/Y H:i',
+        });
+        $('#datetimepicker2').datetimepicker({
+            lang: 'tr',
+            format: 'd/m/Y H:i',
+        });
+    </script>
 @endsection
 
 @section('head')
     <style>
 
         a.morelink {
-            text-decoration:none;
+            text-decoration: none;
             outline: none;
             color: #0254EB
         }
+
         .morecontent span {
             display: none;
         }
+
         .comment {
             /*width: 400px;*/
             /*background-color: #f0f0f0;*/
             /*margin: 10px;*/
         }
     </style>
+    <link rel="stylesheet" href="{{asset('dist/datetimepicker/jquery.datetimepicker.min.css')}}">
 @endsection

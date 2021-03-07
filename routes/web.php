@@ -18,14 +18,16 @@ Route::group(['middleware' => ['IsUnLoggedIn']], function () {
 
 
 Route::group(['middleware' => ['auth']], function () {
-
+    Route::get('/profile', 'App\Http\Controllers\AuthController@profile')->name('auth.profile.index');
+    Route::post('/profile_update', 'App\Http\Controllers\AuthController@profile_update')->name('auth.profile.update');
+    Route::post('/profile_update_password', 'App\Http\Controllers\AuthController@update_password')->name('auth.profile.update.password');
     Route::group(['middleware' => ['IsAdmin']], function () {
         Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
-
-
         Route::get('/admin/product', 'App\Http\Controllers\AdminProductController@index')->name('admin.product.index');
         Route::post('/admin/product/add', 'App\Http\Controllers\AdminProductController@add')->name('admin.product.add');
         Route::get('/admin/product/toggle', 'App\Http\Controllers\AdminProductController@toggle')->name('admin.product.toggle');
+        Route::post('/admin/product/define', 'App\Http\Controllers\AdminProductController@define')->name('admin.product.define');
+
 
         Route::get('/admin/user', 'App\Http\Controllers\AdminUserController@index')->name('admin.user.index');
         Route::post('/admin/user/update', 'App\Http\Controllers\AdminUserController@update')->name('admin.user.update');

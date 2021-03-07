@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
-class Licence extends Model
+class Log extends Model
 {
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'product_id',
-        'start_date',
-        'end_date',
+        'type',
+        'message'
     ];
 
 
@@ -21,12 +20,6 @@ class Licence extends Model
 
     public $incrementing = false;
 
-    public $timestamps = false;
-
-    protected $dates = [
-        'start_date ',
-        'end_date'
-    ];
 
 
     public static function boot()
