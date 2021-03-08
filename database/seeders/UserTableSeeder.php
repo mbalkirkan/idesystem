@@ -26,7 +26,7 @@ class UserTableSeeder extends Seeder
            [
                'username'=>'hbmemati2',
                'email'=>'hbmemati2@gmail.com',
-               'name'=>'Muhammet BALKIRKAN',
+               'name'=>'Muhammet Kullanıcı',
                'type'=>3,
                'password'=>bcrypt('03mematiM()'),
                'ideal_username'=>'mbalkirkan'

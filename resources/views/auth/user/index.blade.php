@@ -22,20 +22,23 @@
                                                         <a href="#"><img src="{{asset('dist/images/product/'.$product->image)}}" alt="" class="img-fluid d-sm-flex mr-sm-3 mb-3 mb-sm-0 rounded-circle" width="120" /></a>
                                                         <div class="media-body">
                                                             <a href="#"><h4>{{$product->name}}</h4></a>
-
                                                             <ul class="list-unstyled redial-font-weight-600">
-
                                                                 <li><i class="fa fa-bookmark pr-2"></i> {{$product->summary}}</li>
                                                                 <li class="comment more"><i class="fa fa-paragraph pr-2"></i> {{$product->description}}</li>
+                                                                @if(!\App\Models\Licence::where('product_id',$product->id)->where('user_id',\Illuminate\Support\Facades\Auth::id())->whereDate('end_date','>=', now())->whereDate('start_date','<=', now())->first())
                                                                 <li><i class="fa fa-turkish-lira pr-2"></i> {{$product->price}}</li>
+                                                                @else
+                                                                    <li><i class="fa fa-clock-o pr-2"></i> {{ \Carbon\Carbon::parse(\App\Models\Licence::where('product_id',$product->id)->where('user_id',\Illuminate\Support\Facades\Auth::id())->whereDate('end_date','>=', now())->whereDate('start_date','<=', now())->first()->end_date)->longRelativeDiffForHumans()}} sona erecek</li>
+                                                                    @endif
                                                             </ul>
                                                             @if(!\App\Models\Licence::where('product_id',$product->id)->where('user_id',\Illuminate\Support\Facades\Auth::id())->whereDate('end_date','>=', now())->whereDate('start_date','<=', now())->first())
                                                                 <a href="#" class="btn btn-success btn-xs mb-2"><i
                                                                         class="fa fa-shopping-cart pr-2"></i> Satın
                                                                     Al</a>
                                                             @else
-                                                                <a href="#" class="btn btn-info btn-xs mb-2"><i
+                                                                <a href="{{asset('dist/systems/product/'.$product->system_file)}}" class="btn btn-info btn-xs mb-2"><i
                                                                         class="fa fa-download pr-2"></i> İndir</a>
+
                                                                 @endif
                                                         </div>
                                                     </div>

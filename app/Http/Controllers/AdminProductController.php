@@ -81,13 +81,14 @@ class AdminProductController extends Controller
         ]);
 
 
-        $start_date= Carbon::parse($request->start_date)->format('Y-d-m H:i:s');
-        $end_date= Carbon::parse($request->end_date)->format('Y-d-m H:i:s');
+        $start_date= Carbon::createFromFormat('d/m/Y H:i',$request->start_date)->format('Y-d-m H:i:s');
+        $end_date= Carbon::createFromFormat('d/m/Y H:i',$request->end_date)->format('Y-d-m H:i:s');
         $user_id=$request->define_user;
         $product_id=$request->define_product;
 
-        $old_licence=Licence::where('product_id',$product_id)->where('user_id',$user_id)->whereDate('end_date','>=', $end_date)->whereDate('start_date','<=', $start_date)->first();
-        if(!$old_licence)
+        $old_licence=Licence::where('product_id',$product_id)->where('user_id',$user_id)->whereDate('end_date','>=', now())->whereDate('start_date','<=', now())->get();
+
+        if(count($old_licence)==0)
         {
             Licence::create([
                 'user_id'=>$user_id,
@@ -111,7 +112,7 @@ class AdminProductController extends Controller
             return redirect()->route('admin.product.index')->with('message', 'Kullanıcıya lisans tanımlandı!');
         }
         else
-            return redirect()->route('admin.product.index')->with('error', 'Kullanıcının zaten aktif lisansı mevcut !');
+            return redirect()->route('admin.product.index')->with('error', 'Kullanıcının zaten aktif lisansı mevcut.');
 
     }
 }

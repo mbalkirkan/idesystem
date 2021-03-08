@@ -120,14 +120,14 @@
                                 <div class="input-group form-group">
                                     <span class="input-group-addon"><i class="fa fa-circle-thin"></i></span>
                                     <input type="text" placeholder="Başlangıç tarihi" class="form-control"
-                                        name="start_date"   id="datetimepicker"/>
+                                        name="start_date" autocomplete="off"   id="datetimepicker"/>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 pr-0">
                                 <div class="input-group form-group">
                                     <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
                                     <input type="text" placeholder="Bitiş tarihi" class="form-control"
-                                         name="end_date"  id="datetimepicker2"/>
+                                         name="end_date"  autocomplete="off" id="datetimepicker2"/>
                                 </div>
                             </div>
                         </div>
@@ -221,10 +221,8 @@
 @endsection
 @section('js')
     <script>
-        @if ($errors->any())
-        @foreach ($errors->all() as $error)
-        toastr.error('Hata - <br /> {{ $error }}');
-        @endforeach
+        @if(session()->has('error'))
+        toastr.error('Hata - <br />   {{ session()->get('error') }}');
         @endif
     </script>
     <script>
