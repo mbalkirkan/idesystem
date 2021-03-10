@@ -24,7 +24,9 @@
                                                             <a href="#"><h4>{{$product->name}}</h4></a>
                                                             <ul class="list-unstyled redial-font-weight-600">
                                                                 <li><i class="fa fa-bookmark pr-2"></i> {{$product->summary}}</li>
-                                                                <li class="comment more"><i class="fa fa-paragraph pr-2"></i> {{$product->description}}</li>
+                                                                <li class="comment more"><i
+                                                                        class="fa fa-paragraph pr-2"></i> {{$product->description}}
+                                                                </li>
                                                                 @if(!\App\Models\Licence::where('product_id',$product->id)->where('user_id',\Illuminate\Support\Facades\Auth::id())->whereDate('end_date','>=', now())->whereDate('start_date','<=', now())->first())
                                                                 <li><i class="fa fa-turkish-lira pr-2"></i> {{$product->price}}</li>
                                                                 @else
@@ -60,5 +62,39 @@
     </div>
 @endsection
 @section('js')
+    <script>
+        $(document).ready(function () {
+            var showChar = 100;
+            var ellipsestext = "...";
+            var moretext = "daha fazla";
+            var lesstext = "daha az";
+            $('.more').each(function () {
+                var content = $(this).html();
 
+                if (content.length > showChar) {
+
+                    var c = content.substr(0, showChar);
+                    var h = content.substr(showChar - 1, content.length - showChar);
+
+                    var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+                    $(this).html(html);
+                }
+
+            });
+
+            $(".morelink").click(function () {
+                if ($(this).hasClass("less")) {
+                    $(this).removeClass("less");
+                    $(this).html(moretext);
+                } else {
+                    $(this).addClass("less");
+                    $(this).html(lesstext);
+                }
+                $(this).parent().prev().toggle();
+                $(this).prev().toggle();
+                return false;
+            });
+        });
+    </script>
 @endsection
