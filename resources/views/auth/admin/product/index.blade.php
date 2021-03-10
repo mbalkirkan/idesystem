@@ -33,7 +33,7 @@
                                                             <a href="#"><h4>{{$product->name}}</h4></a>
 
                                                             <ul class="list-unstyled redial-font-weight-600">
-                                                                <li><span><i class="fa fa-rocket pr-2"></i> Satın Alan Sayısı : {{\App\Models\Licence::where('product_id',$product->id)->whereDate('end_date','>=', now())->get()->count()}}</span>
+                                                                <li><span><i class="fa fa-rocket pr-2"></i> Satın Alan Sayısı : {{\App\Models\Licence::where('product_id',$product->id)->where('end_date','>=', now())->get()->count()}}</span>
                                                                 </li>
                                                                 <li>
                                                                     <i class="fa fa-bookmark pr-2"></i> {{$product->summary}}

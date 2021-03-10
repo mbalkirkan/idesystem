@@ -81,12 +81,14 @@ class AdminProductController extends Controller
         ]);
 
 
-        $start_date= Carbon::createFromFormat('d/m/Y H:i',$request->start_date)->format('Y-d-m H:i:s');
-        $end_date= Carbon::createFromFormat('d/m/Y H:i',$request->end_date)->format('Y-d-m H:i:s');
+        $start_date= Carbon::createFromFormat('d/m/Y H:i',$request->start_date);
+        $end_date= Carbon::createFromFormat('d/m/Y H:i',$request->end_date);
+       // return $end_date->format('Y-d-m H:i:s');
+    //    return $start_date->diffForHumans();
         $user_id=$request->define_user;
         $product_id=$request->define_product;
 
-        $old_licence=Licence::where('product_id',$product_id)->where('user_id',$user_id)->whereDate('end_date','>=', now())->whereDate('start_date','<=', now())->get();
+        $old_licence=Licence::where('product_id',$product_id)->where('user_id',$user_id)->where('end_date','>=', now())->where('start_date','<=', now())->get();
 
         if(count($old_licence)==0)
         {
