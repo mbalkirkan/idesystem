@@ -11,10 +11,10 @@
 
     /*========================= Dynamic Field ======================*/
 /*==============================================================
-     Tab Next Previous 
+     Tab Next Previous
      ============================================================= */
-    $('.tab-next').on('click', function () {        
-     
+    $('.tab-next').on('click', function () {
+
         var $tab= $(this).attr('data-tab');
         $('.'+$tab).click();
         return false;
@@ -52,14 +52,14 @@
             });
 
     /*==============================================================
-     Sidechat 
+     Sidechat
      ============================================================= */
     $('.setting').on('click', function () {
         $('#sidechat').toggleClass('active');
 
     });
     /*==============================================================
-     Sidebar 
+     Sidebar
      ============================================================= */
 
     $('#sidebarCollapse').on('click', function () {
@@ -84,7 +84,7 @@
      =============================================================*/
     $('.counter_number').counterUp({
         delay: 1,
-        time: 1600
+        time: 100
     });
     /*==============================================================
      Masonry
@@ -98,7 +98,7 @@
         });
     });
 
-    //Reinitialize masonry inside each panel after the relative tab link is clicked - 
+    //Reinitialize masonry inside each panel after the relative tab link is clicked -
     $('a[data-toggle=tab]').each(function () {
         var $this = $(this);
         $this.on('shown.bs.tab', function () {
@@ -184,7 +184,7 @@
 
 
     /*==============================================================
-     DropZone 
+     DropZone
      =============================================================*/
 
 
@@ -232,7 +232,7 @@
     $('#calendar-demo').dcalendar(); //creates the calendar
 
     /*==============================================================
-     Jq-Meter Progress Bar 
+     Jq-Meter Progress Bar
      =============================================================*/
 
     $('#jqmeter-horizontal').jQMeter({goal: '$10,000', raised: '9000', width: '100%', height: '10px', barColor: '#1e1e1e', animationSpeed: 1000, displayTotal: false});
@@ -656,7 +656,7 @@
     }
 
     /*========================================================
-     * 
+     *
      * Moriss
      */
     if ($('#morris-area-chart2').length > 0)
@@ -822,7 +822,7 @@
     }
 
     /*=========================================================
-     * 
+     *
      *Chart js
      */
     if ($('#placeholder').length > 0)
@@ -1013,7 +1013,7 @@
     }
 
     /*===========================================================
-     * 
+     *
      * Advance Custom Form
      */
 //------------- Fancy select -------------//

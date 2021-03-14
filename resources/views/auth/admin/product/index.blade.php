@@ -42,7 +42,7 @@
                                                                         class="fa fa-paragraph pr-2"></i> {{$product->description}}
                                                                 </li>
                                                                 <li>
-                                                                    <i class="fa fa-turkish-lira pr-2"></i> {{$product->price}}
+                                                                    <i class="fa fa-turkish-lira pr-2"></i> {{$product->price}} / {{$product->period}} Ay
                                                                 </li>
                                                             </ul>
                                                             <a href="{{route('admin.product.toggle',['id'=>$product->id])}}"
@@ -57,7 +57,9 @@
 
                                                             <a href="{{asset('dist/systems/product/'.$product->system_file)}}"
                                                                class="btn btn-info btn-xs mb-2"><i
-                                                                    class="fa fa-download pr-2"></i> İndir</a>
+                                                                    class="fa fa-download "></i> </a>
+                                                            <button onclick="delete_product('{{$product->id}}','{{$product->name}}')" type="button" class="btn btn-danger btn-xs mb-2"><i class="fa fa-trash"></i>
+                                                            </button>
 
                                                         </div>
                                                     </div>
@@ -186,11 +188,21 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="input-group form-group">
-                                <span class="input-group-addon"><i class="fa fa-turkish-lira"></i></span>
-                                <input id="add_product_price" type="text" class="form-control" name="add_product_price"
-                                       placeholder="Fiyat"/>
+                            <div class="col-12 col-sm-6 pl-0">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-turkish-lira"></i></span>
+                                    <input id="add_product_price" type="text" class="form-control" name="add_product_price"
+                                           placeholder="Fiyat"/>
+                                </div>
                             </div>
+                            <div class="col-12 col-sm-6 pr-0">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
+                                    <input id="add_product_price" type="text" class="form-control" name="add_product_price"
+                                           placeholder="Periyot"/>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <div class="input-group form-group">
@@ -277,6 +289,27 @@
             lang: 'tr',
             format: 'd/m/Y H:i',
         });
+    </script>
+
+    <script>
+        function delete_product(id, name) {
+            swal({
+                    title: 'Emin misiniz ?',
+                    text: name + "' adlı sistemi silmek üzeresiniz ?",
+                    type: "warning",
+                    confirmButtonText: 'SİL',
+                    confirmButtonClass: 'btn-danger',
+                    cancelButtonText: 'Vazgeç',
+                    cancelButtonClass: 'btn-primary',
+                    showCancelButton: true,
+
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        window.location.href='{{route('admin.product.delete')}}?id='+id;
+                    }
+                });
+        }
     </script>
 @endsection
 

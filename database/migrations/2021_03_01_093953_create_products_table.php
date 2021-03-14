@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->string('summary');
             $table->float('price', 5, 2);
+            $table->integer('period');
             $table->string('system_file');
             $table->boolean('publish')->default(false);
             $table->string('image')->default('default.jpg');

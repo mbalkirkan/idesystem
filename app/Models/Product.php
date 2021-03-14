@@ -14,6 +14,7 @@ class Product extends Model
         'description',
         'summary',
         'price',
+        'period',
         'image',
         'system_file',
         'publish',

@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 
 class AdminProductController extends Controller
@@ -115,6 +116,19 @@ class AdminProductController extends Controller
         }
         else
             return redirect()->route('admin.product.index')->with('error', 'Kullanıcının zaten aktif lisansı mevcut.');
+
+    }
+    public function delete(Request $request)
+    {
+        $product=Product::find($request->id);
+
+        File::delete('dist/systems/product/'.$product->system_file);
+        File::delete('dist/images/product/'.$product->image);
+        $product->delete();
+        return redirect()->route('admin.product.index')->with('message', 'Sistem başarıyla silindi!');
+    }
+    public function update(Request $request)
+    {
 
     }
 }
