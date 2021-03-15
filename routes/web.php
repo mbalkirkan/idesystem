@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/admin/user', 'App\Http\Controllers\AdminUserController@index')->name('admin.user.index');
         Route::post('/admin/user/update', 'App\Http\Controllers\AdminUserController@update')->name('admin.user.update');
         Route::get('/admin/user/delete', 'App\Http\Controllers\AdminUserController@delete')->name('admin.user.delete');
+        Route::post('/admin/user/licence/get', 'App\Http\Controllers\AdminUserController@get_licence')->name('admin.user.get.licence');
     });
 
     Route::group(['middleware' => ['IsSupervisor']], function () {

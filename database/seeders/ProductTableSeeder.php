@@ -16,6 +16,7 @@ class ProductTableSeeder extends Seeder
                 'description'=>'Deneme sistem açıklama metni',
                 'summary'=>'Deneme sistem özet metni',
                 'price'=>'100',
+                'period'=>'3',
                 'system_file'=>'product.zip',
             ]
         ];
@@ -26,6 +27,7 @@ class ProductTableSeeder extends Seeder
                 'description'=>$product['description'],
                 'summary'=>$product['summary'],
                 'price'=>$product['price'],
+                'period'=>$product['period'],
                 'system_file'=>$product['system_file'],
             ]);
 

@@ -28,7 +28,8 @@ class AdminProductController extends Controller
             'add_product_description' => 'required',
             'add_product_price' => 'required',
             'add_product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'add_product_system_file' => 'required'
+            'add_product_system_file' => 'required',
+            'add_product_period' => 'required'
         ]);
         $image = $request->file('add_product_image');
         $filename =  time().'.'.$image->getClientOriginalName();
@@ -44,6 +45,7 @@ class AdminProductController extends Controller
             'description'=>$request->add_product_description,
             'summary'=>$request->add_product_summary,
             'price'=>$request->add_product_price,
+            'period'=>$request->add_product_period,
             'image'=>$filename,
             'system_file'=>$system_file_filename,
         ]);
@@ -109,7 +111,7 @@ class AdminProductController extends Controller
             Log::create([
                 'type'=>2,
                 'user_id'=>Auth::id(),
-                'message'=>User::find($user_id)->name."Kullanıcısına ".$product->name." lisansı tanımlandı. (".$request->start_date."-".$request->end_date.")",
+                'message'=>User::find($user_id)->name." Kullanıcısına ".$product->name." lisansı tanımlandı. (".$request->start_date."-".$request->end_date.")",
             ]);
 
             return redirect()->route('admin.product.index')->with('message', 'Kullanıcıya lisans tanımlandı!');
@@ -130,5 +132,47 @@ class AdminProductController extends Controller
     public function update(Request $request)
     {
 
+        $validated = $request->validate([
+            'edit_product_id' => 'required',
+            'edit_product_name' => 'required|max:25',
+            'edit_product_summary' => 'required|max:100',
+            'edit_product_description' => 'required',
+            'edit_product_price' => 'required',
+            'edit_product_period' => 'required',
+            'edit_product_image' => 'nullable',
+            'edit_product_system_file' => 'nullable'
+        ]);
+
+        $product=Product::find($request->edit_product_id);
+
+        if($request->edit_product_image!=null)
+        {
+
+            File::delete('dist/images/product/'.$product->image);
+            $image = $request->file('edit_product_image');
+            $filename =  time().'.'.$image->getClientOriginalName();
+            $image->move(public_path('dist/images/product'), $filename);
+            $product->image=$filename;
+
+        }
+       if($request->edit_product_system_file!=null)
+       {
+           File::delete('dist/systems/product/'.$product->system_file);
+           $system_file = $request->file('edit_product_system_file');
+           $system_file_filename =  time().'.'.$system_file->getClientOriginalName();
+           $system_file->move(public_path('dist/systems/product'), $system_file_filename);
+           $product->system_file=$system_file_filename;
+       }
+
+
+       $product->name=$request->edit_product_name;
+       $product->description=$request->edit_product_description;
+       $product->summary=$request->edit_product_summary;
+       $product->price=$request->edit_product_price;
+       $product->period=$request->edit_product_period;
+
+       $product->save();
+
+        return redirect()->route('admin.product.index')->with('message', 'Sistem başarıyla güncellendi!');
     }
 }

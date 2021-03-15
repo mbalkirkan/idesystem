@@ -35,6 +35,11 @@
                                         <td>{{\Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i')}}</td>
                                         <td>
                                             <button
+                                                onclick="get_licence('{{$user->id}}')"
+                                               type="button"
+                                                class="btn btn-info"><i class="fa fa-bookmark"></i>
+                                            </button>
+                                            <button
                                                 onclick="edit_fill('{{$user->id}}','{{$user->name}}','{{$user->username}}','{{$user->email}}','{{$user->ideal_username}}','{{$user->type}}')"
                                                 data-toggle="modal" data-target="#user_edit_modal" type="button"
                                                 class="btn btn-warning"><i class="fa fa-edit"></i>
@@ -125,6 +130,41 @@
     </div>
     <!-- Kullanıcı Düzenleme -->
 
+
+
+    <!-- Kullanıcı Lisansları -->
+    <div class="modal fade" id="user_licences" tabindex="-1" role="dialog" aria-labelledby="user_licences"
+         aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content redial-border-light">
+                <div class="modal-header redial-border-light">
+                    <h5 class="modal-title pt-2" id="exampleModalLabel">Kullanıcı Lisansları</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="licence_table" class="table table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>İsim</th>
+                            <th>Lisans</th>
+                            <th>Başlangıç Tarihi</th>
+                            <th>Bitiş Tarihi</th>
+                        </tr>
+                        </thead>
+
+                    </table>
+                </div>
+                <div class="modal-footer redial-border-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Kullanıcı Lisansları -->
+
+
 @endsection
 @section('js')
     <script>
@@ -150,6 +190,61 @@
             $('#edit_email').val(email);
             $('#edit_ideal_username').val(ideal_username);
             $('#edit_type').val(type).change();
+        }
+    </script>
+
+    <script>
+        function get_licence(id) {
+
+            $('#licence_table').DataTable().destroy();
+
+            $('#licence_table').DataTable( {
+                processing:true,
+                serverSide: true,
+                paging: false,
+                bDestroy:true,
+                searching:false,
+                dom: 'Bfrtip',
+                retrieve: true,
+                info:false,
+
+                "ajax": {
+                    data: {
+                        'id':id,
+                    } ,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    "url": "{{route('admin.user.get.licence')}}",
+                    "type": "POST",
+                   // "dataSrc":""
+                    "dataSrc": function ( json ) {
+                        if(json.length==0)
+                        {
+                            toastr.success("Kullanıcıya ait bir lisans bulunamadı.");
+                        }
+                        else{
+                            $('#user_licences').modal('show');
+                        }
+                        return json;
+                    },
+
+                },
+
+                "columns": [
+                    { "data": "user_name" },
+                    { "data": "product_name" },
+                    { "data": function (data,type,row)
+                        {
+                            return moment( data['start_date']).format('MM/DD/YYYY hh:mm');
+                        }},
+                    { "data": function (data,type,row)
+                        {
+                            return moment( data['end_date']).format('MM/DD/YYYY hh:mm');
+                        }},
+                ]
+            } );
+
         }
     </script>
     <script>

@@ -60,7 +60,11 @@
                                                                     class="fa fa-download "></i> </a>
                                                             <button onclick="delete_product('{{$product->id}}','{{$product->name}}')" type="button" class="btn btn-danger btn-xs mb-2"><i class="fa fa-trash"></i>
                                                             </button>
-
+                                                            <button
+                                                                onclick="edit_product('{{$product->id}}','{{$product->name}}','{{$product->summary}}','{{$product->description}}','{{$product->price}}','{{$product->period}}')"
+                                                                data-toggle="modal" data-target="#edit_product_modal" type="button"
+                                                                class="btn btn-warning btn-xs mb-2"><i class="fa fa-edit"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -79,7 +83,6 @@
         </div>
 
     </div>
-
 
     <!-- Kullanıcıya Sistem Tanımla -->
     <div class="modal fade" id="define_product_modal" tabindex="-1" role="dialog" aria-labelledby="define_product_modal"
@@ -149,9 +152,7 @@
     </div>
     <!-- Kullanıcıya Sistem Tanımla -->
 
-
-
-    <!-- Kullanıcı Düzenleme -->
+    <!-- Sistem Ekleme -->
     <div class="modal fade" id="new_product" tabindex="-1" role="dialog" aria-labelledby="new_product"
          aria-hidden="true">
         <div class="modal-dialog  modal-lg" role="document">
@@ -198,7 +199,7 @@
                             <div class="col-12 col-sm-6 pr-0">
                                 <div class="input-group form-group">
                                     <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
-                                    <input id="add_product_price" type="text" class="form-control" name="add_product_price"
+                                    <input id="add_product_period" type="text" class="form-control" name="add_product_period"
                                            placeholder="Periyot"/>
                                 </div>
                             </div>
@@ -229,7 +230,88 @@
             </div>
         </div>
     </div>
-    <!-- Kullanıcı Düzenleme -->
+    <!-- Sistem Ekleme -->
+
+    <!-- Sistem Düzenleme -->
+    <div class="modal fade" id="edit_product_modal" tabindex="-1" role="dialog" aria-labelledby="edit_product_modal"
+         aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content redial-border-light">
+                <div class="modal-header redial-border-light">
+                    <h5 class="modal-title pt-2" id="exampleModalLabel">Ürün Düzenle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{route('admin.product.update')}}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" name="edit_product_id" id="edit_product_id" hidden>
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-bookmark"></i></span>
+                                <input id="edit_product_name" type="text" name="edit_product_name" class="form-control"
+                                       placeholder="Ürün adı">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-indent"></i></span>
+                                <input id="edit_product_summary" type="text" class="form-control"
+                                       name="edit_product_summary"
+                                       placeholder="Özet"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                <textarea name="edit_product_description" id="edit_product_description" style="height: 80px !important;"
+                                          class="form-control" placeholder="Ürün açıklaması"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-12 col-sm-6 pl-0">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-turkish-lira"></i></span>
+                                    <input id="edit_product_price" type="text" class="form-control" name="edit_product_price"
+                                           placeholder="Fiyat"/>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 pr-0">
+                                <div class="input-group form-group">
+                                    <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
+                                    <input id="edit_product_period" type="text" class="form-control" name="edit_product_period"
+                                           placeholder="Periyot"/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-file-image-o"></i></span>
+                                <input id="edit_product_image" name="edit_product_image" type="file">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group form-group">
+                                <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                <input id="edit_product_system_file" name="edit_product_system_file" type="file">
+
+                            </div>
+                        </div>
+                        <button type="submit"
+                                class="btn btn-warning btn-md redial-rounded-circle-50 btn-block">Ürün Bilgilerini Güncelle
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer redial-border-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sistem Düzenleme -->
 @endsection
 @section('js')
     <script>
@@ -240,6 +322,13 @@
     <script>
         @if(session()->has('message'))
         toastr.success("Başarılı - <br /> {{ session()->get('message') }}");
+        @endif
+    </script>
+    <script>
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        toastr.error('Hata - <br /> {{ $error }}');
+        @endforeach
         @endif
     </script>
     <script>
@@ -276,6 +365,16 @@
                 return false;
             });
         });
+    </script>
+    <script>
+        function edit_product(id, name, summary, description, price, period) {
+            $('#edit_product_id').val(id);
+            $('#edit_product_name').val(name);
+            $('#edit_product_summary').val(summary);
+            $('#edit_product_description').val(description);
+            $('#edit_product_price').val(price);
+            $('#edit_product_period').val(period);
+        }
     </script>
     <script src="{{asset('dist/datetimepicker/jquery.datetimepicker.full.js')}}"></script>
     <script>

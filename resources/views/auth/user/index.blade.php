@@ -28,9 +28,9 @@
                                                                         class="fa fa-paragraph pr-2"></i> {{$product->description}}
                                                                 </li>
                                                                 @if(!\App\Models\Licence::where('product_id',$product->id)->where('user_id',\Illuminate\Support\Facades\Auth::id())->where('end_date','>=', now())->where('start_date','<=', now())->first())
-                                                                <li><i class="fa fa-turkish-lira pr-2"></i> {{$product->price}}</li>
+                                                                <li> <i class="fa fa-turkish-lira pr-2"></i> {{$product->price}} / {{$product->period}} Ay</li>
                                                                 @else
-                                                                    <li><i class="fa fa-clock-o pr-2"></i> {{ \Carbon\Carbon::parse(\App\Models\Licence::where('product_id',$product->id)->where('user_id',\Illuminate\Support\Facades\Auth::id())->where('end_date','>=', now())->where('start_date','<=', now())->first()->end_date)->longRelativeDiffForHumans()}} sona erecek</li>
+                                                                    <li><i class="fa fa-clock-o pr-2"></i> {{ \Carbon\Carbon::parse(\App\Models\Licence::where('product_id',$product->id)->where('user_id',\Illuminate\Support\Facades\Auth::id())->where('end_date','>=', now())->where('start_date','<=', now())->first()->end_date)->longRelativeDiffForHumans(\Carbon\Carbon::now())}} sona erecek</li>
                                                                     @endif
                                                             </ul>
                                                             @if(!\App\Models\Licence::where('product_id',$product->id)->where('user_id',\Illuminate\Support\Facades\Auth::id())->where('end_date','>=', now())->where('start_date','<=', now())->first())
@@ -97,4 +97,25 @@
             });
         });
     </script>
+@endsection
+@section('head')
+    <style>
+
+        a.morelink {
+            text-decoration: none;
+            outline: none;
+            color: #0254EB
+        }
+
+        .morecontent span {
+            display: none;
+        }
+
+        .comment {
+            /*width: 400px;*/
+            /*background-color: #f0f0f0;*/
+            /*margin: 10px;*/
+        }
+    </style>
+
 @endsection
