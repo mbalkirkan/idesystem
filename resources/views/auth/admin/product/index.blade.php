@@ -33,6 +33,9 @@
                                                             <a href="#"><h4>{{$product->name}}</h4></a>
 
                                                             <ul class="list-unstyled redial-font-weight-600">
+                                                                <li>
+                                                                    <i class="fa fa-key pr-2"></i> {{$product->id}}
+                                                                </li>
                                                                 <li><span><i class="fa fa-rocket pr-2"></i> Satın Alan Sayısı : {{\App\Models\Licence::where('product_id',$product->id)->where('end_date','>=', now())->get()->count()}}</span>
                                                                 </li>
                                                                 <li>

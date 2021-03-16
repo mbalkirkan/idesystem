@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +7,15 @@
     <title>İdeSystem - Giriş Yap</title>
     <link rel="icon" href="{{asset('dist/images/favicon.ico')}}" />
 
-    <!--Plugin CSS-->
+
     <link href="{{asset('dist/css/plugins.min.css')}}" rel="stylesheet">
 
-    <!--main Css-->
+
     <link href="{{asset('dist/css/main.min.css')}}" rel="stylesheet">
 </head>
 <body>
 
-<!-- main-content-->
+
 <div class="wrapper">
     <div class="w-100">
         <div class="row d-flex justify-content-center  pt-5 mt-5">
@@ -73,9 +73,7 @@
         </div>
     </div>
 </div>
-<!-- End main-content-->
 
-<!-- jQuery -->
 <script src="{{asset('dist/js/plugins.min.js')}}"></script>
 <script src="{{asset('dist/js/common.js')}}"></script>
 </body>

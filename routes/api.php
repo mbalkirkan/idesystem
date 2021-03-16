@@ -19,8 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::group(['middleware' => ['IsAdmin']], function () {
-        Route::post('/admin/product/licence/get', 'App\Http\Controllers\AdminUserController@get_licence')->name('admin.user.get.licence');
-    });
-});
+
+Route::post('/licence', 'App\Http\Controllers\LicenceController@licence')->name('api.licence');
+//
+//Route::group(['middleware' => ['auth']], function () {
+//    Route::group(['middleware' => ['IsAdmin']], function () {
+//        Route::post('/admin/product/licence/get', 'App\Http\Controllers\AdminUserController@get_licence')->name('admin.user.get.licence');
+//    });
+//});

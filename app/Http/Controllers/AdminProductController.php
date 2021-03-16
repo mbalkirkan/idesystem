@@ -23,8 +23,8 @@ class AdminProductController extends Controller
     public function add(Request $request)
     {
         $validated = $request->validate([
-            'add_product_name' => 'required|max:25',
-            'add_product_summary' => 'required|max:100',
+            'add_product_name' => 'required|max:50',
+            'add_product_summary' => 'required|max:00',
             'add_product_description' => 'required',
             'add_product_price' => 'required',
             'add_product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -134,8 +134,8 @@ class AdminProductController extends Controller
 
         $validated = $request->validate([
             'edit_product_id' => 'required',
-            'edit_product_name' => 'required|max:25',
-            'edit_product_summary' => 'required|max:100',
+            'edit_product_name' => 'required|max:50',
+            'edit_product_summary' => 'required|max:200',
             'edit_product_description' => 'required',
             'edit_product_price' => 'required',
             'edit_product_period' => 'required',

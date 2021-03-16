@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
     <meta charset="utf-8">
@@ -8,15 +8,15 @@
     <title>İdeSystem - @yield('title')</title>
     <link rel="icon" href="{{asset('dist/images/favicon.ico')}}"/>
     <meta lang="tr">
-    <!--Plugin CSS-->
+
     <link href="{{asset('dist/css/plugins.min.css')}}" rel="stylesheet">
-    <!--main Css-->
+
     <link href="{{asset('dist/css/main.min.css')}}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('head')
 </head>
 <body>
-<!-- header-->
+
 <div id="header-fix" class="header py-4 py-lg-2 fixed-top">
     <div class="container-fluid">
         <div class="row">
@@ -40,9 +40,9 @@
         </div>
     </div>
 </div>
-<!-- End header-->
 
-<!-- Main-content Top bar-->
+
+
 <div class="redial-relative mt-80">
     <div class="container-fluid">
         <div class="row">
@@ -64,9 +64,7 @@
         </div>
     </div>
 </div>
-<!-- End Main-content Top bar-->
 
-<!-- main-content-->
 <div class="wrapper">
     <nav id="sidebar" class="card redial-border-light px-2 mb-4">
         <div class="sidebar-scrollarea">
@@ -98,15 +96,14 @@
         @yield('content')
     </div>
 </div>
-<!-- End main-content-->
 
-<!-- Top To Bottom--> <a href="#" class="scrollup text-center redial-bg-primary redial-rounded-circle-50 ">
+<a href="#" class="scrollup text-center redial-bg-primary redial-rounded-circle-50 ">
     <h4 class="text-white mb-0"><i class="icofont icofont-long-arrow-up"></i></h4>
 </a>
-<!-- End Top To Bottom-->
 
 
-<!-- jQuery -->
+
+
 <script src="{{asset('dist/js/plugins.min.js')}}"></script>
 
 <script src="{{asset('dist/js/common.js')}}"></script>
